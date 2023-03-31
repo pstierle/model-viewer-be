@@ -9,45 +9,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PointOfInterest = void 0;
-const model_entity_1 = require("../../model/entities/model.entity");
+exports.Model = void 0;
+const user_entity_1 = require("../../auth/entities/user.entity");
+const point_of_interest_entity_1 = require("../../point-of-interest/entities/point-of-interest.entity");
 const typeorm_1 = require("typeorm");
-let PointOfInterest = class PointOfInterest {
+let Model = class Model {
 };
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
     __metadata("design:type", Number)
-], PointOfInterest.prototype, "id", void 0);
+], Model.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], PointOfInterest.prototype, "username", void 0);
+], Model.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], PointOfInterest.prototype, "x", void 0);
+], Model.prototype, "username", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], PointOfInterest.prototype, "y", void 0);
+], Model.prototype, "y", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], PointOfInterest.prototype, "z", void 0);
+], Model.prototype, "z", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], PointOfInterest.prototype, "modelId", void 0);
+], Model.prototype, "modelId", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], PointOfInterest.prototype, "description", void 0);
+], Model.prototype, "description", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => model_entity_1.Model, (model) => model.pointOfInterests),
-    __metadata("design:type", model_entity_1.Model)
-], PointOfInterest.prototype, "model", void 0);
-PointOfInterest = __decorate([
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.models),
+    __metadata("design:type", user_entity_1.User)
+], Model.prototype, "user", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => point_of_interest_entity_1.PointOfInterest, (poi) => poi.model),
+    __metadata("design:type", Array)
+], Model.prototype, "pointOfInterests", void 0);
+Model = __decorate([
     (0, typeorm_1.Entity)()
-], PointOfInterest);
-exports.PointOfInterest = PointOfInterest;
-//# sourceMappingURL=point-of-interest.entity.js.map
+], Model);
+exports.Model = Model;
+//# sourceMappingURL=model.entity.js.map

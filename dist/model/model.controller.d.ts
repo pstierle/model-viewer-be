@@ -2,6 +2,6 @@ import { Model, ModelService } from './model.service';
 export declare class ModelController {
     private readonly modelService;
     constructor(modelService: ModelService);
-    findAll(): Model[];
+    findByUserName(userId: string): Model[];
     findOne(id: string): Model;
 }

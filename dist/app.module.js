@@ -15,6 +15,7 @@ const point_of_interest_module_1 = require("./point-of-interest/point-of-interes
 const model_module_1 = require("./model/model.module");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -31,6 +32,7 @@ AppModule = __decorate([
             }),
             point_of_interest_module_1.PointOfInterestModule,
             model_module_1.ModelModule,
+            auth_module_1.AuthModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

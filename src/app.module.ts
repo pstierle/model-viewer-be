@@ -6,6 +6,7 @@ import { PointOfInterestModule } from './point-of-interest/point-of-interest.mod
 import { ModelModule } from './model/model.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { join } from 'path';
     }),
     PointOfInterestModule,
     ModelModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

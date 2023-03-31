@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Model } from 'src/model/entities/model.entity';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class PointOfInterest {
@@ -22,4 +23,7 @@ export class PointOfInterest {
 
   @Column()
   description: string;
+
+  @ManyToOne(() => Model, (model) => model.pointOfInterests)
+  model: Model;
 }

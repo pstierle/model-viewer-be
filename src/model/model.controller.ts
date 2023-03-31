@@ -5,9 +5,9 @@ import { Model, ModelService } from './model.service';
 export class ModelController {
   constructor(private readonly modelService: ModelService) {}
 
-  @Get()
-  findAll(): Model[] {
-    return this.modelService.findAll();
+  @Get('/all/:userId')
+  findByUserName(@Param('userId') userId: string): Model[] {
+    return [];
   }
 
   @Get(':id')

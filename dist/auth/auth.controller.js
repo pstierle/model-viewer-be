@@ -12,37 +12,38 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ModelController = void 0;
+exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
-const model_service_1 = require("./model.service");
-let ModelController = class ModelController {
-    constructor(modelService) {
-        this.modelService = modelService;
+const create_user_dto_1 = require("./dto/create-user.dto");
+const auth_service_1 = require("./auth.service");
+let AuthController = class AuthController {
+    constructor(authService) {
+        this.authService = authService;
     }
-    findByUserName(userId) {
-        return [];
+    create(createUserDto) {
+        return this.authService.register(createUserDto);
     }
-    findOne(id) {
-        return this.modelService.findOne(+id);
+    login(name) {
+        return this.authService.login(name);
     }
 };
 __decorate([
-    (0, common_1.Get)('/all/:userId'),
-    __param(0, (0, common_1.Param)('userId')),
+    (0, common_1.Post)('register'),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Array)
-], ModelController.prototype, "findByUserName", null);
+    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)('login/:name'),
+    __param(0, (0, common_1.Param)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Object)
-], ModelController.prototype, "findOne", null);
-ModelController = __decorate([
-    (0, common_1.Controller)('model'),
-    __metadata("design:paramtypes", [model_service_1.ModelService])
-], ModelController);
-exports.ModelController = ModelController;
-//# sourceMappingURL=model.controller.js.map
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "login", null);
+AuthController = __decorate([
+    (0, common_1.Controller)('auth'),
+    __metadata("design:paramtypes", [auth_service_1.AuthService])
+], AuthController);
+exports.AuthController = AuthController;
+//# sourceMappingURL=auth.controller.js.map
