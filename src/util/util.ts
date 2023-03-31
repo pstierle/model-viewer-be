@@ -1,5 +1,5 @@
 export class Util {
-  public static modelUrl(modelId: number, userId: number): string {
-    return `models/${userId}/${modelId}.glb`;
+  public static modelUrl(modelId: string, userId: string): string {
+    return `http://localhost:3000/models/${userId}-${modelId}.glb`;
   }
 }

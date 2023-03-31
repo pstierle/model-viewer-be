@@ -4,7 +4,7 @@ import { DataSource } from 'typeorm';
 export declare class ModelService {
     private dataSource;
     constructor(dataSource: DataSource);
-    findByUserId(userId: number): Promise<Model[]>;
-    findOne(id: number): Promise<Model>;
+    findByUserId(userId: string): Promise<Model[]>;
+    findOne(id: string): Promise<Model>;
     createOne(createModelDto: CreateModelDto): Promise<Model>;
 }

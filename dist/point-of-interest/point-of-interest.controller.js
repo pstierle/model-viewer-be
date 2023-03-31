@@ -24,12 +24,8 @@ let PointOfInterestController = class PointOfInterestController {
         const saved = await this.pointOfInterestService.create(createPointOfInterestDto);
         return saved;
     }
-    async findByUsername(username, modelId) {
-        const found = await this.pointOfInterestService.findByUsernameAndModel(username, +modelId);
-        return found;
-    }
-    async findOne(id) {
-        const found = await this.pointOfInterestService.findOne(+id);
+    async findByModelId(modelId) {
+        const found = await this.pointOfInterestService.findByModelId(modelId);
         return found;
     }
 };
@@ -41,20 +37,12 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PointOfInterestController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(':username/:modelId'),
-    __param(0, (0, common_1.Param)('username')),
-    __param(1, (0, common_1.Param)('modelId')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
-    __metadata("design:returntype", Promise)
-], PointOfInterestController.prototype, "findByUsername", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)(':modelId'),
+    __param(0, (0, common_1.Param)('modelId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], PointOfInterestController.prototype, "findOne", null);
+], PointOfInterestController.prototype, "findByModelId", null);
 PointOfInterestController = __decorate([
     (0, common_1.Controller)('point-of-interest'),
     __metadata("design:paramtypes", [point_of_interest_service_1.PointOfInterestService])

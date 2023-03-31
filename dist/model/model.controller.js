@@ -22,11 +22,11 @@ let ModelController = class ModelController {
     constructor(modelService) {
         this.modelService = modelService;
     }
-    findByUserName(userId) {
-        return this.modelService.findByUserId(+userId);
+    findByUserId(userId) {
+        return this.modelService.findByUserId(userId);
     }
     findOne(id) {
-        return this.modelService.findOne(+id);
+        return this.modelService.findOne(id);
     }
     createModel(createModelDto) {
         return this.modelService.createOne(createModelDto);
@@ -42,7 +42,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ModelController.prototype, "findByUserName", null);
+], ModelController.prototype, "findByUserId", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
@@ -61,7 +61,10 @@ __decorate([
     (0, common_1.Post)('upload'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
         storage: (0, multer_1.diskStorage)({
-            destination: '../public/models',
+            destination: 'public/models',
+            filename: (req, file, cb) => {
+                cb(null, file.originalname);
+            },
         }),
     })),
     __param(0, (0, common_1.UploadedFile)()),

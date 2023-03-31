@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Util = void 0;
 class Util {
     static modelUrl(modelId, userId) {
-        return `models/${userId}/${modelId}.glb`;
+        return `http://localhost:3000/models/${userId}-${modelId}.glb`;
     }
 }
 exports.Util = Util;

@@ -16,17 +16,21 @@ const util_1 = require("../../util/util");
 const typeorm_1 = require("typeorm");
 let Model = class Model {
     loadUrl() {
-        this.url = util_1.Util.modelUrl(this.id, this.user.id);
+        this.url = util_1.Util.modelUrl(this.id, this.userId);
     }
 };
 __decorate([
-    (0, typeorm_1.PrimaryColumn)(),
-    __metadata("design:type", Number)
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
+    __metadata("design:type", String)
 ], Model.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Model.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Model.prototype, "userId", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.models),
     __metadata("design:type", user_entity_1.User)

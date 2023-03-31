@@ -10,13 +10,13 @@ export class ModelController {
   constructor(private readonly modelService: ModelService) {}
 
   @Get('/all/:userId')
-  public findByUserName(@Param('userId') userId: string): Promise<Model[]> {
-    return this.modelService.findByUserId(+userId);
+  public findByUserId(@Param('userId') userId: string): Promise<Model[]> {
+    return this.modelService.findByUserId(userId);
   }
 
   @Get(':id')
   public findOne(@Param('id') id: string): Promise<Model> {
-    return this.modelService.findOne(+id);
+    return this.modelService.findOne(id);
   }
 
   @Post()
@@ -28,12 +28,14 @@ export class ModelController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: '../public/models',
+        destination: 'public/models',
+        filename: (req: any, file: any, cb: any) => {
+          cb(null, file.originalname);
+        },
       }),
     })
   )
   public uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
     return 'OK';
   }
 }

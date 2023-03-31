@@ -1,4 +1,4 @@
 export declare class CreateModelDto {
     modelName: string;
-    userId: number;
+    userId: string;
 }

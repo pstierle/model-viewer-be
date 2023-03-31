@@ -5,6 +5,5 @@ export declare class PointOfInterestController {
     private readonly pointOfInterestService;
     constructor(pointOfInterestService: PointOfInterestService);
     create(createPointOfInterestDto: CreatePointOfInterestDto): Promise<PointOfInterest>;
-    findByUsername(username: string, modelId: string): Promise<PointOfInterest[]>;
-    findOne(id: string): Promise<PointOfInterest>;
+    findByModelId(modelId: string): Promise<PointOfInterest[]>;
 }

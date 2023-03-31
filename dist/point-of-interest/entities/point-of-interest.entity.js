@@ -15,13 +15,9 @@ const typeorm_1 = require("typeorm");
 let PointOfInterest = class PointOfInterest {
 };
 __decorate([
-    (0, typeorm_1.PrimaryColumn)(),
-    __metadata("design:type", Number)
-], PointOfInterest.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", String)
-], PointOfInterest.prototype, "username", void 0);
+], PointOfInterest.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
@@ -34,10 +30,6 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], PointOfInterest.prototype, "z", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], PointOfInterest.prototype, "modelId", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)

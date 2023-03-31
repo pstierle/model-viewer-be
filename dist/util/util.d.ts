@@ -1,3 +1,3 @@
 export declare class Util {
-    static modelUrl(modelId: number, userId: number): string;
+    static modelUrl(modelId: string, userId: string): string;
 }

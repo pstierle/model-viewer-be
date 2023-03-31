@@ -5,7 +5,7 @@ import { ModelService } from './model.service';
 export declare class ModelController {
     private readonly modelService;
     constructor(modelService: ModelService);
-    findByUserName(userId: string): Promise<Model[]>;
+    findByUserId(userId: string): Promise<Model[]>;
     findOne(id: string): Promise<Model>;
     createModel(createModelDto: CreateModelDto): Promise<Model>;
     uploadFile(file: Express.Multer.File): string;

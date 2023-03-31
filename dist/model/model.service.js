@@ -22,8 +22,14 @@ let ModelService = class ModelService {
     constructor(dataSource) {
         this.dataSource = dataSource;
     }
-    async findByUserId(userId) {
-        return [];
+    findByUserId(userId) {
+        return this.dataSource.manager.find(model_entity_1.Model, {
+            where: {
+                user: {
+                    id: userId,
+                },
+            },
+        });
     }
     findOne(id) {
         return this.dataSource.manager.findOne(model_entity_1.Model, {

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
+import { Model } from 'src/model/entities/model.entity';
 import { PointOfInterest } from 'src/point-of-interest/entities/point-of-interest.entity';
 import { DataSource } from 'typeorm';
 import { CreatePointOfInterestDto } from './dto/create-point-of-interest.dto';
@@ -12,32 +13,33 @@ export class PointOfInterestService {
   ) {}
 
   async create(createPointOfInterestDto: CreatePointOfInterestDto): Promise<PointOfInterest> {
-    const pointOfInterest = new PointOfInterest();
-
-    pointOfInterest.username = createPointOfInterestDto.username;
-    pointOfInterest.description = createPointOfInterestDto.description;
-    pointOfInterest.modelId = createPointOfInterestDto.modelId;
-    pointOfInterest.x = createPointOfInterestDto.x;
-    pointOfInterest.y = createPointOfInterestDto.y;
-    pointOfInterest.z = createPointOfInterestDto.z;
-
-    const saved = await this.dataSource.manager.save(pointOfInterest);
-    return saved;
-  }
-
-  findByUsernameAndModel(name: string, id: number): Promise<PointOfInterest[]> {
-    return this.dataSource.manager.find(PointOfInterest, {
+    const model = await this.dataSource.manager.findOne(Model, {
       where: {
-        username: name,
-        modelId: id,
+        id: createPointOfInterestDto.modelId,
       },
     });
+    if (model) {
+      const pointOfInterest = new PointOfInterest();
+
+      pointOfInterest.description = createPointOfInterestDto.description;
+      pointOfInterest.model = model;
+      pointOfInterest.x = createPointOfInterestDto.x;
+      pointOfInterest.y = createPointOfInterestDto.y;
+      pointOfInterest.z = createPointOfInterestDto.z;
+
+      const saved = await this.dataSource.manager.save(pointOfInterest);
+      return saved;
+    } else {
+      return null;
+    }
   }
 
-  findOne(modelId: number): Promise<PointOfInterest> {
-    return this.dataSource.manager.findOne(PointOfInterest, {
+  findByModelId(modelId: string): Promise<PointOfInterest[]> {
+    return this.dataSource.manager.find(PointOfInterest, {
       where: {
-        id: modelId,
+        model: {
+          id: modelId,
+        },
       },
     });
   }

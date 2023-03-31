@@ -1,13 +1,10 @@
 import { Model } from 'src/model/entities/model.entity';
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class PointOfInterest {
-  @PrimaryColumn()
-  id: number;
-
-  @Column()
-  username: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   x: string;
@@ -17,9 +14,6 @@ export class PointOfInterest {
 
   @Column()
   z: string;
-
-  @Column()
-  modelId: number;
 
   @Column()
   description: string;

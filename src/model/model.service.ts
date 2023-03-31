@@ -12,18 +12,17 @@ export class ModelService {
     private dataSource: DataSource
   ) {}
 
-  public async findByUserId(userId: number): Promise<Model[]> {
-    /*     const user = await this.dataSource.manager.findOne(User, {
-      relations: ['models'],
+  public findByUserId(userId: string): Promise<Model[]> {
+    return this.dataSource.manager.find(Model, {
       where: {
-        id: userId,
+        user: {
+          id: userId,
+        },
       },
-    }); */
-
-    return [];
+    });
   }
 
-  public findOne(id: number): Promise<Model> {
+  public findOne(id: string): Promise<Model> {
     return this.dataSource.manager.findOne(Model, {
       where: {
         id,

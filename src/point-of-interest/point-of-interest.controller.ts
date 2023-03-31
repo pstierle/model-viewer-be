@@ -15,18 +15,9 @@ export class PointOfInterestController {
     return saved;
   }
 
-  @Get(':username/:modelId')
-  async findByUsername(
-    @Param('username') username: string,
-    @Param('modelId') modelId: string
-  ): Promise<PointOfInterest[]> {
-    const found = await this.pointOfInterestService.findByUsernameAndModel(username, +modelId);
-    return found;
-  }
-
-  @Get(':id')
-  async findOne(@Param('id') id: string): Promise<PointOfInterest> {
-    const found = await this.pointOfInterestService.findOne(+id);
+  @Get(':modelId')
+  async findByModelId(@Param('modelId') modelId: string): Promise<PointOfInterest[]> {
+    const found = await this.pointOfInterestService.findByModelId(modelId);
     return found;
   }
 }

@@ -5,6 +5,5 @@ export declare class PointOfInterestService {
     private dataSource;
     constructor(dataSource: DataSource);
     create(createPointOfInterestDto: CreatePointOfInterestDto): Promise<PointOfInterest>;
-    findByUsernameAndModel(name: string, id: number): Promise<PointOfInterest[]>;
-    findOne(modelId: number): Promise<PointOfInterest>;
+    findByModelId(modelId: string): Promise<PointOfInterest[]>;
 }
