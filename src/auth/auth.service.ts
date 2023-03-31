@@ -23,7 +23,9 @@ export class AuthService {
     } else {
       const user = new User();
       user.name = createUserDto.name;
+      user.models = [];
       const created = await this.dataSource.manager.save(user);
+      console.log(created);
       return created;
     }
   }

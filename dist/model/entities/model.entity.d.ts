@@ -3,11 +3,8 @@ import { PointOfInterest } from 'src/point-of-interest/entities/point-of-interes
 export declare class Model {
     id: number;
     name: string;
-    username: string;
-    y: string;
-    z: string;
-    modelId: number;
-    description: string;
     user: User;
     pointOfInterests: PointOfInterest[];
+    url: string;
+    loadUrl(): void;
 }

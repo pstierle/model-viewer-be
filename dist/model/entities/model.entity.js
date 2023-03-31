@@ -12,8 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Model = void 0;
 const user_entity_1 = require("../../auth/entities/user.entity");
 const point_of_interest_entity_1 = require("../../point-of-interest/entities/point-of-interest.entity");
+const util_1 = require("../../util/util");
 const typeorm_1 = require("typeorm");
 let Model = class Model {
+    loadUrl() {
+        this.url = util_1.Util.modelUrl(this.id, this.user.id);
+    }
 };
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
@@ -24,26 +28,6 @@ __decorate([
     __metadata("design:type", String)
 ], Model.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Model.prototype, "username", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Model.prototype, "y", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Model.prototype, "z", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Model.prototype, "modelId", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Model.prototype, "description", void 0);
-__decorate([
     (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.models),
     __metadata("design:type", user_entity_1.User)
 ], Model.prototype, "user", void 0);
@@ -51,6 +35,12 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => point_of_interest_entity_1.PointOfInterest, (poi) => poi.model),
     __metadata("design:type", Array)
 ], Model.prototype, "pointOfInterests", void 0);
+__decorate([
+    (0, typeorm_1.AfterLoad)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], Model.prototype, "loadUrl", null);
 Model = __decorate([
     (0, typeorm_1.Entity)()
 ], Model);
