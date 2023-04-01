@@ -1,3 +1,7 @@
 /dist
 
 /node_modules
+
+/model-viewer-db.sqlite
+
+/public/models/*
