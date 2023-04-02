@@ -13,7 +13,7 @@ import { entities } from './entity/entities';
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: join(__dirname, '..', 'database', 'model-viewer-db.sqlite'),
+      database: join(__dirname, '..', 'model-viewer-db.sqlite'),
       entities: [...entities],
       synchronize: true,
     }),
