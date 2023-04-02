@@ -3,5 +3,4 @@ export class CreatePointOfInterestDto {
   y: string;
   z: string;
   modelId: string;
-  description: string;
 }

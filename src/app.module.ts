@@ -7,13 +7,14 @@ import { ModelModule } from './model/model.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
+import { entities } from './entity/entities';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'model-viewer-db.sqlite',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      database: join(__dirname, '..', 'database', 'model-viewer-db.sqlite'),
+      entities: [...entities],
       synchronize: true,
     }),
     ServeStaticModule.forRoot({

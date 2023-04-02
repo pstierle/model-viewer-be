@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
-import { User } from 'src/auth/entities/user.entity';
+import { Model } from 'src/entity/entities/model.entity';
+import { User } from 'src/entity/entities/user.entity';
 import { CreateModelDto } from 'src/model/dto/create-model.dto';
-import { Model } from 'src/model/entities/model.entity';
 import { DataSource } from 'typeorm';
 
 @Injectable()
@@ -20,6 +20,23 @@ export class ModelService {
         },
       },
     });
+  }
+
+  public async delete(id: string): Promise<void> {
+    const found = await this.dataSource.manager.findOne(Model, {
+      relations: ['pointOfInterests'],
+      where: { id },
+    });
+
+    if (!!found) {
+      await this.dataSource.manager.remove(found.pointOfInterests);
+      await this.dataSource.manager.remove(found);
+    } else {
+      throw new HttpException(
+        'No Model found with given id!',
+        HttpStatus.NOT_FOUND
+      );
+    }
   }
 
   public findOne(id: string): Promise<Model> {

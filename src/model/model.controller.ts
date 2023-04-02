@@ -1,8 +1,18 @@
-import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Delete,
+  UploadedFile,
+  UseInterceptors,
+  HttpStatus,
+} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { Model } from 'src/entity/entities/model.entity';
 import { CreateModelDto } from 'src/model/dto/create-model.dto';
-import { Model } from 'src/model/entities/model.entity';
 import { ModelService } from './model.service';
 
 @Controller('model')
@@ -22,6 +32,12 @@ export class ModelController {
   @Post()
   public createModel(@Body() createModelDto: CreateModelDto) {
     return this.modelService.createOne(createModelDto);
+  }
+
+  @Delete('id')
+  public async delete(@Param('id') id: string): Promise<HttpStatus> {
+    await this.modelService.delete(id);
+    return HttpStatus.OK;
   }
 
   @Post('upload')

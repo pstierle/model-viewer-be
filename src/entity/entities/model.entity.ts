@@ -1,7 +1,14 @@
-import { User } from 'src/auth/entities/user.entity';
-import { PointOfInterest } from 'src/point-of-interest/entities/point-of-interest.entity';
+import { User } from './user.entity';
+import { PointOfInterest } from './point-of-interest.entity';
 import { Util } from 'src/util/util';
-import { AfterLoad, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  AfterLoad,
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Model {
